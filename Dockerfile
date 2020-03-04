@@ -21,9 +21,8 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/
 RUN chmod +x /usr/bin/tini
 
 RUN conda config --add channels conda-forge && \
-    conda config --set channel_priority strict
-
-RUN conda install --yes\
+    conda config --set channel_priority strict && \
+    conda install --yes\
     matplotlib \
     qutip \
     jupyter \
