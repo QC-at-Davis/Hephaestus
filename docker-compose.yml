@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    hephaestus:
+        image: jzl777/hephaestus
+        ports:
+            - "8888:8888"
+        volumes:
+            - .:/home
+        command: jupyter notebook --ip='*' --port=8888 --no-browser --allow-root --notebook-dir=/home
