@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:latest AS build
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /opt/conda/bin:$PATH
@@ -8,7 +8,7 @@ RUN apt-get update --fix-missing && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.7.12-Linux-x86_64.sh -O ~/miniconda.sh && \
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     /opt/conda/bin/conda clean -tipsy && \
@@ -27,14 +27,12 @@ RUN conda config --add channels conda-forge && \
     qutip \
     jupyter \
     && conda clean -afy \
-        && find /opt/conda/ -follow -type f -name '*.a' -delete \
+    && find /opt/conda/ -follow -type f -name '*.a' -delete \
     && find /opt/conda/ -follow -type f -name '*.pyc' -delete \
     && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
-    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -follow -type f -name '*.js' || true \
-    && pip install qiskit
+    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -follow -type f -name '*.js' || true
 
-COPY start.sh /
-RUN chmod +x start.sh
-ENTRYPOINT [ "/usr/bin/tini", "--"]
-CMD ["/bin/bash"]
+RUN pip install qiskit --compile --no-cache-dir
 
+FROM continuumio/miniconda3
+COPY --from=build /opt/conda/. /opt/conda
