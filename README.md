@@ -8,12 +8,12 @@ Hephaestus is a docker image with all the necessary dependencies and frameworks 
 
 ## Variants
 
-There are several variants of Hephaestus:
-* __Hephaestus__
+There are several variants of Hephaestus from QCaD:
+* __Hephaestus__ (this repository)
   * Targeted for educational purposes, designed to be as small and performant as possible while running all QCaD workshops
 * __Hephaestus-G__
   * Targeted for research purposes, sacrifices space and educational purpose in favor of flexibility and availability of tools
-* __Hephaestus-XDT__ 
+* [__Hephaestus-XDT__](https://github.com/Quantum-Computing-at-Davis/Hephaestus-XDT)
   * Not a *true* variant in the sense that it is a standalone, executable environment but does contain some templates and snippets used in developing the above workshops
 
 ## Architecture
