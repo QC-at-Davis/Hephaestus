@@ -6,6 +6,16 @@ The Official Quantum Computing at Davis (QCaD) workshop environment
 
 Hephaestus is a docker image with all the necessary dependencies and frameworks for [QCaD workshops](https://github.com/Quantum-Computing-at-Davis/Workshops)
 
+## Variants
+
+There are several variants of Hephaestus:
+* __Hephaestus__
+  * Targeted for educational purposes, designed to be as small and performant as possible while running all QCaD workshops
+* __Hephaestus-G__
+  * Targeted for research purposes, sacrifices space and educational purpose in favor of flexibility and availability of tools
+* __Hephaestus-XDT__ 
+  * Not a *true* variant in the sense that it is a standalone, executable environment but does contain some templates and snippets used in developing the above workshops
+
 ## Architecture
 
 Hephaestus uses the [frolvlad/alpine-miniconda3](https://hub.docker.com/r/frolvlad/alpine-miniconda3/) image as its base, a modified version of Alpine Linux with miniconda built into it with the following modifications:
